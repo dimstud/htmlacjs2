@@ -4,12 +4,12 @@ module.exports = {
   mode: 'development',
   entry: './src/main.js',
   output: {
-    filename: 'bundel.js',
-    path: path.join(__dirname, 'public')
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public'),
   },
   devtool: 'source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    watchContentBase: true
+    contentBase: path.resolve(__dirname, 'public'),
+    watchContentBase: true,
   }
 };
