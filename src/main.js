@@ -4,6 +4,7 @@ import {createFilmsList} from "./view/fillm-list.js";
 import {createFilmcard} from "./view/film-card.js";
 import {createShowMoreButton} from "./view/show-more-button.js";
 import {createFilmsListExtra} from "./view/film-list-extra.js";
+import {createSort} from "./view/sort.js";
 
 const FILM_COUNT = 5;
 const EXTRA_FILM_COUNT = 2;
@@ -17,10 +18,11 @@ const main = document.querySelector(`.main`);
 
 render(profileHeader, createProfileRating(), `beforeend`);
 render(main, createMenuAndStats(), `afterbegin`);
+render(main, createSort(), `beforeend`);
 render(main, createFilmsList(), `beforeend`);
 
 const filmsSection = document.querySelector(`.films`);
-const filmsList = document.querySelector(`.films-list`);
+const filmsList = filmsSection.querySelector(`.films-list`);
 const filmsListContainer = document.querySelector(`.films-list__container`);
 
 for (let i = 0; i<FILM_COUNT; i++) {
