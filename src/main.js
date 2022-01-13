@@ -3,8 +3,10 @@ import {createMenuAndStats} from "./view/menu.js";
 import {createFilmsList} from "./view/fillm-list.js";
 import {createFilmcard} from "./view/film-card.js";
 import {createShowMoreButton} from "./view/show-more-button.js";
+import {createFilmsListExtra} from "./view/film-list-extra.js";
 
 const FILM_COUNT = 5;
+const EXTRA_FILM_COUNT = 2;
 
 const render = (container, element, place) => {
   container.insertAdjacentHTML(place, element);
@@ -17,11 +19,24 @@ render(profileHeader, createProfileRating(), `beforeend`);
 render(main, createMenuAndStats(), `afterbegin`);
 render(main, createFilmsList(), `beforeend`);
 
-const filmList = document.querySelector(`.films-list`);
-const filmListContainer = document.querySelector(`.films-list__container`);
+const filmsSection = document.querySelector(`.films`);
+const filmsList = document.querySelector(`.films-list`);
+const filmsListContainer = document.querySelector(`.films-list__container`);
 
 for (let i = 0; i<FILM_COUNT; i++) {
-  render(filmListContainer, createFilmcard(), `beforeend`)
+  render(filmsListContainer, createFilmcard(), `beforeend`)
 }
 
-render(filmList, createShowMoreButton(), `beforeend`);
+render(filmsList, createShowMoreButton(), `beforeend`);
+render(filmsSection, createFilmsListExtra(`Top rated`), `beforeend`);
+render(filmsSection, createFilmsListExtra(`Most commented`), `beforeend`);
+
+const filmsListExtra = document.querySelectorAll(`.films-list--extra`);
+
+filmsListExtra.forEach((element) => {
+  const filmsListExtraContainer = element.querySelector(`.films-list__container`);
+
+  for (let i = 0; i < EXTRA_FILM_COUNT; i++) {
+    render(filmsListExtraContainer, createFilmcard(), `beforeend`);
+  }
+});
